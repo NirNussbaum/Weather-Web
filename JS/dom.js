@@ -4,6 +4,10 @@ const details = document.querySelector('.details');
 const time = document.querySelector('.timeImg');
 const icon = document.querySelector('.icon img')
 
+if (localStorage.length) {
+
+}
+
 const updateUI = (data) => {
     const {cityObj, weatherObj} = data;
 
@@ -46,4 +50,16 @@ form.addEventListener('submit', (e) => {
         console.log(err);
     });
 
+    localStorage.setItem('city', cityName);
+
 });
+
+if (localStorage.getItem('city')) {
+    getApp(localStorage.getItem('city'))
+    .then(data => {
+        updateUI(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+}
